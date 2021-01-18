@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Socket } from 'ngx-socket-io';
 
-import { FanStatus, ResponsePack } from './vo'
+import { FanStatus, ResponsePack } from '../vo'
 
 @Injectable({
   providedIn: 'root'

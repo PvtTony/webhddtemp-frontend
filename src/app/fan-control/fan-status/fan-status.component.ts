@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SetFanStatusDialogComponent } from '../set-fan-status-dialog/set-fan-status-dialog.component';
 import { ControllerService } from '../controller.service';
-import { FanStatus } from '../vo';
+import { FanStatus } from '../../vo';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
