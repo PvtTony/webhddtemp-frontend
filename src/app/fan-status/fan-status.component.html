@@ -1,0 +1,9 @@
+<mat-card class="fan-status">
+    <mat-card-title>Fan Status Monitor</mat-card-title>
+    <mat-card-content *ngIf="fanStatus">
+        <h3>Speed: {{ (fanStatus.speed / 100) | percent }} <br> RPM: {{ fanStatus.rpm }}</h3>
+    </mat-card-content>
+    <mat-card-actions *ngIf="fanStatus">
+        <button mat-button color="primary" (click)="openSetFanStatusDialog()">Set Speed</button>
+    </mat-card-actions>
+</mat-card>
