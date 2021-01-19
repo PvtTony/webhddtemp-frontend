@@ -9,7 +9,7 @@ export interface ResponsePack<T> {
     data: T;
 }
 
-export interface DriveItem {
+export interface BlockDeviceItem {
     info_name: string;
     name: string;
     protocol: string;
@@ -21,7 +21,7 @@ export interface DriveTemp {
         history: Array<{ est: number; temp: number }>;
         logging_interval_minutes: number;
         sampling_period_minutes: number;
-    }
+    };
     temp:
     {
         current: number;
@@ -33,10 +33,49 @@ export interface DriveTemp {
         op_limit_min: number;
         power_cycle_max: number;
         power_cycle_min: number;
-    }
+    };
 }
 
-export interface DriveTempTableItem {
+export interface DriveInfoTableRow {
     name: string;
     value: string;
+}
+
+export interface DriveInfo {
+    ata_version: {
+        major_value: number;
+        minor_value: number;
+        string: string;
+    };
+    device: BlockDeviceItem;
+    firmware_version: string;
+    form_factor: {
+        ata_value: number;
+        name: string;
+    };
+    interface_speed: {
+        current: InterfaceSpeed;
+        max: InterfaceSpeed;
+    };
+    logical_block_size: number;
+    model_family: string;
+    model_name: string;
+    physical_block_size: number;
+    rotation_rate: number;
+    sata_version: {
+        string: string;
+        value: number;
+    };
+    serial_number: string;
+    user_capacity: {
+        blocks: number;
+        bytes: number;
+    };
+}
+
+interface InterfaceSpeed {
+    bits_per_unit: number;
+    sata_value: number;
+    string: string;
+    units_per_second: number;
 }

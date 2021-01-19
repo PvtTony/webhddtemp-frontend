@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { ResponsePack, DriveItem, DriveTemp } from '../shared/vo';
+import { ResponsePack, DriveTemp, DriveInfo } from '../shared/vo';
 import { server_url } from '../shared/config';
 
 @Injectable({
@@ -13,9 +13,9 @@ export class MonitoringService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getDrives(): Observable<ResponsePack<Array<DriveItem>>> {
+  getDrives(): Observable<ResponsePack<Array<DriveInfo>>> {
     const url = `${server_url}/drives`;
-    return this.httpClient.get<ResponsePack<Array<DriveItem>>>(url);
+    return this.httpClient.get<ResponsePack<Array<DriveInfo>>>(url);
   }
 
   getDriveTempDetail(drive_name: string): Observable<ResponsePack<DriveTemp>> {

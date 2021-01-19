@@ -1,8 +1,8 @@
 <mat-accordion *ngIf="drive_list">
     <mat-expansion-panel *ngFor="let drive of drive_list">
         <mat-expansion-panel-header>
-            <mat-panel-title> {{ drive.info_name }}</mat-panel-title>
-            <mat-panel-description> Drive Protocol: {{ drive.protocol }} </mat-panel-description>
+            <mat-panel-title> {{ drive.device.name }}</mat-panel-title>
+            <mat-panel-description> {{ drive.model_name }} </mat-panel-description>
         </mat-expansion-panel-header>
         <ng-template matExpansionPanelContent>
             <app-drive-temp-detail [drive]="drive"></app-drive-temp-detail>
