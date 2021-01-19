@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavBarComponent } from './nav-bar.component';
+import { DriveTempDetailComponent } from './drive-temp-detail.component';
 
-describe('NavBarComponent', () => {
-  let component: NavBarComponent;
-  let fixture: ComponentFixture<NavBarComponent>;
+describe('DriveTempDetailComponent', () => {
+  let component: DriveTempDetailComponent;
+  let fixture: ComponentFixture<DriveTempDetailComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NavBarComponent ]
+      declarations: [ DriveTempDetailComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NavBarComponent);
+    fixture = TestBed.createComponent(DriveTempDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

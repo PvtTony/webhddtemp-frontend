@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Socket } from 'ngx-socket-io';
 
-import { FanStatus, ResponsePack } from '../vo'
+import { FanStatus, ResponsePack } from '../shared/vo'
+import { server_url, httpOptions } from '../shared/config';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +13,9 @@ import { FanStatus, ResponsePack } from '../vo'
 export class ControllerService {
 
   constructor(private httpClient: HttpClient, private socket: Socket) { }
-  private target_host: string = 'http://127.0.0.1:5000';
+  private target_host: string = server_url;
 
   // private get_drives_url: string = `${this.target_host}/drive`;
-
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
 
   getFanStatus(): Observable<ResponsePack<FanStatus>> {
     const url = `${this.target_host}/fan`;
@@ -28,7 +25,7 @@ export class ControllerService {
 
   setFanStatus(settings: FanStatus): Observable<any> {
     const url = `${this.target_host}/fan`;
-    return this.httpClient.put(url, settings, this.httpOptions)
+    return this.httpClient.put(url, settings, httpOptions)
       .pipe(
         tap(_ => console.log(_))
       );

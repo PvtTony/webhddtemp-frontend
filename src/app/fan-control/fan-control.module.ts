@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SharedModule } from '../shared/shared.module';
+import { server_url } from '../shared/config';
+
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 import { FanControlRoutingModule } from './fan-control-routing.module';
@@ -11,7 +13,7 @@ import { SetFanStatusDialogComponent } from './set-fan-status-dialog/set-fan-sta
 
 import { ControllerService } from './controller.service';
 
-const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} }
+const config: SocketIoConfig = { url: server_url, options: {} }
 
 @NgModule({
   declarations: [

@@ -1,4 +1,21 @@
-<app-nav-bar></app-nav-bar>
-<div class="container">
-    <router-outlet></router-outlet>
-</div>
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidemenu.toggle()" aria-label="Menu Button">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span> HDD Fan Speed Controller</span>
+</mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav #sidemenu mode="push">
+        <mat-nav-list>
+            <a mat-list-item routerLink="/fan">Fan Speed Control</a>
+            <a mat-list-item routerLink="/drives">Drive Temp Monitor</a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        
+        <div class="container">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+

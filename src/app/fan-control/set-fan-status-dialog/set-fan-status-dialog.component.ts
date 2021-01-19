@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, Validators } from '@angular/forms';
-import { FanStatus } from '../../vo';
+import { FanStatus } from '../../shared/vo';
 
 
 @Component({
