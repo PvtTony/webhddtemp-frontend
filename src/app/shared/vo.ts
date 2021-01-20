@@ -49,10 +49,10 @@ export interface DriveInfo {
     };
     device: BlockDeviceItem;
     firmware_version: string;
-    form_factor: {
-        ata_value: number;
-        name: string;
-    };
+    // form_factor: {
+    //     ata_value: number;
+    //     name: string;
+    // };
     interface_speed: {
         current: InterfaceSpeed;
         max: InterfaceSpeed;

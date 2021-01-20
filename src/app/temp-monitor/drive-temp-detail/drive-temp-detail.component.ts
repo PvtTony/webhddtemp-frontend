@@ -43,7 +43,6 @@ export class DriveTempDetailComponent implements OnInit {
       { name: "User Capacity", value: `${this.drive.user_capacity.bytes} Bytes` },
       { name: "Sector Sizes", value: `${this.drive.logical_block_size} bytes logical, ${this.drive.physical_block_size} bytes physical` },
       { name: "Rotation Rate", value: `${this.drive.rotation_rate}` },
-      { name: "Form Factor", value: `${this.drive.form_factor.name}` },
       { name: "Protocol", value: `${this.drive.device.protocol}`},
       { name: "Current Temperature", value: `${drive_temp.temp.current} °C` },
       { name: "Lifetime Temp Range", value: `${drive_temp.temp.lifetime_min}~${drive_temp.temp.lifetime_max} °C` },
