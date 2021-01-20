@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { Socket } from 'ngx-socket-io';
 
 import { FanStatus, ResponsePack } from '../shared/vo'
-import { server_url, api_prefix, httpOptions } from '../shared/config';
+import { server_url, api_prefix, httpOptions, handleError } from '../shared/config';
 
 @Injectable({
   providedIn: 'root'
@@ -18,21 +18,22 @@ export class ControllerService {
 
   getFanStatus(): Observable<ResponsePack<FanStatus>> {
     const url = `${server_url}${api_prefix}/fan`;
-    return this.httpClient.get<ResponsePack<FanStatus>>(url);
-    // .pipe(tap(_ => { console.log(_)}));
+    return this.httpClient.get<ResponsePack<FanStatus>>(url)
+      .pipe(catchError(handleError));
   }
 
   setFanStatus(settings: FanStatus): Observable<any> {
     const url = `${server_url}${api_prefix}/fan`;
     return this.httpClient.put(url, settings, httpOptions)
       .pipe(
-        tap(_ => console.log(_))
+        catchError(handleError)
       );
   }
 
   getFanStatusSocket(): Observable<FanStatus> {
     return this.socket
-      .fromEvent<FanStatus>('fan_status_update');
+      .fromEvent<FanStatus>('fan_status_update')
+      .pipe(catchError(handleError));
   }
 
 }

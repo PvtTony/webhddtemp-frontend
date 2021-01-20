@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DriveInfo, DriveTemp, DriveInfoTableRow } from 'src/app/shared/vo';
 import { MonitoringService } from '../monitoring.service';
 
@@ -16,7 +17,7 @@ export class DriveTempDetailComponent implements OnInit {
 
   charts_options: any;
 
-  constructor(private monitor: MonitoringService) { }
+  constructor(private monitor: MonitoringService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getDriveTemp();
@@ -26,11 +27,14 @@ export class DriveTempDetailComponent implements OnInit {
     if (this.drive == null) {
       return;
     }
-    
+
     this.monitor.getDriveTempDetail(this.drive.device.name).subscribe(detail => {
       this.drive_temp = detail.data;
       this.getDriveInfoTableData(this.drive_temp);
       this.getTempHistoryChartsOptions(this.drive_temp);
+    }, error => {
+      this.snackBar.open(`Unable to get ${this.drive.device.name}'s temp info. Please try again.`, 'OK',
+        { duration: 2000 });
     });
   }
 
@@ -43,7 +47,7 @@ export class DriveTempDetailComponent implements OnInit {
       { name: "User Capacity", value: `${this.drive.user_capacity.bytes} Bytes` },
       { name: "Sector Sizes", value: `${this.drive.logical_block_size} bytes logical, ${this.drive.physical_block_size} bytes physical` },
       { name: "Rotation Rate", value: `${this.drive.rotation_rate}` },
-      { name: "Protocol", value: `${this.drive.device.protocol}`},
+      { name: "Protocol", value: `${this.drive.device.protocol}` },
       { name: "Current Temperature", value: `${drive_temp.temp.current} °C` },
       { name: "Lifetime Temp Range", value: `${drive_temp.temp.lifetime_min}~${drive_temp.temp.lifetime_max} °C` },
       { name: "Powercycle Temp Range", value: `${drive_temp.temp.power_cycle_min}~${drive_temp.temp.power_cycle_max} °C` }
